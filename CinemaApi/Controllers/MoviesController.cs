@@ -38,7 +38,7 @@ namespace CinemaApi.Controllers
             return Ok(movies);
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         [Authorize]
         public IActionResult FindByName(string name)
         {

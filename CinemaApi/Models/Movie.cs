@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace CinemaApi.Models
 {
@@ -25,6 +26,7 @@ namespace CinemaApi.Models
         public string Genre { get; set; }
         public string TrailorUrl { get; set; }
         public string ImageUrl { get; set; }
+        [XmlIgnore]
         public ICollection<Reservation> Reservations { get; set; }
 
     }

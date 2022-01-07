@@ -46,6 +46,12 @@ namespace CinemaApi
             // solo sirve cuando queremos crear de entrada por unica vez la base de datos
             //si después la actualizamos o actualizamos algun modelo no nos va a servir.
 
+            app.UseSwagger();
+            
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseEndpoints(endpoints =>
             {
@@ -58,6 +64,8 @@ namespace CinemaApi
             services.AddAuthorization();
             services.AddHealthChecks();
             services.AddControllers();
+            services.AddSwaggerGen();
+
             services.AddDbContext<CinemaDbContext>(option => 
             option.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDb;Integrated Security = True"));
 
@@ -79,6 +87,7 @@ namespace CinemaApi
                         ClockSkew = TimeSpan.Zero,
                     };
                 });
+
         }
     }
 }
