@@ -1,18 +1,16 @@
+using Application;
 using CinemaApi.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Persistence;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CinemaApi
 {
@@ -61,6 +59,9 @@ namespace CinemaApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureApplicationServices();
+            //services.ConfigureInfrastructureServices(Configuration); Si agregamos los mails por ahora no
+            services.ConfigurePersistenceServices(Configuration);
             services.AddAuthorization();
             services.AddHealthChecks();
             services.AddControllers();

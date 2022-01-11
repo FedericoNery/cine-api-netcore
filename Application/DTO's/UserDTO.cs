@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
-namespace CinemaApi.Models
+namespace Application.DTO_s
 {
-    public class User
+    public class UserDTO
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
-        [XmlIgnore]
-        public ICollection<Reservation> Reservations { get; set; }
+        public ICollection<ReservationDTO> Reservations { get; set; }
     }
 }

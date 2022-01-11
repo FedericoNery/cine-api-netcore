@@ -4,11 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CinemaApi.Models
+namespace Domain
 {
-    public class Reservation
+    public class Reservation : BaseDomainEntity
     {
-        public int Id { get; set; }
         public int Qty { get; set; }
         public double Price { get; set; }
         public string Phone { get; set; }

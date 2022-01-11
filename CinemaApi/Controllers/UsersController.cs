@@ -1,16 +1,13 @@
 ﻿using AuthenticationPlugin;
 using CinemaApi.Data;
-using CinemaApi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace CinemaApi.Controllers
 {
@@ -35,7 +32,7 @@ namespace CinemaApi.Controllers
 
         [HttpPost]
         //[Authorize]//Estamos protegiendo el método acá
-        public IActionResult Register([FromBody] User user)
+        /*public IActionResult Register([FromBody] User user)
         {
             var userWithSameEmail = _dbContext.Users.Where(x => x.Email.Equals(user.Email)).SingleOrDefault();
 
@@ -54,7 +51,7 @@ namespace CinemaApi.Controllers
             _dbContext.Users.Add(userObj);
             _dbContext.SaveChanges();
             return StatusCode(StatusCodes.Status201Created);
-        }
+        }*/
 
         //Crear metodos get para authorize de users y de admin
         [HttpGet]
@@ -71,7 +68,7 @@ namespace CinemaApi.Controllers
             return "Tiene rol de users";
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public IActionResult Login([FromBody] User user)
         {
             var userEmail = _dbContext.Users.FirstOrDefault(x => x.Email.Equals(user.Email));
@@ -102,6 +99,6 @@ namespace CinemaApi.Controllers
                 expiration_Time = token.ValidTo,
                 user_id = userEmail.Id
             });
-        }
+        }*/
     }
 }

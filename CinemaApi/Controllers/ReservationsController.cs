@@ -1,12 +1,8 @@
 ﻿using CinemaApi.Data;
-using CinemaApi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CinemaApi.Controllers
 {
@@ -20,14 +16,14 @@ namespace CinemaApi.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpPost]
+        /*[HttpPost]
         [Authorize]
         public IActionResult ReserveTicket([FromBody] Reservation reservation)
         {
             _dbContext.Reservations.Add(reservation);
             _dbContext.SaveChanges();
             return StatusCode(StatusCodes.Status201Created);
-        }
+        }*/
 
         [HttpGet]
         [Authorize(Roles="Admin")]

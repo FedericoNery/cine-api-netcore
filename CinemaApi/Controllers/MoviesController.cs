@@ -1,30 +1,28 @@
-﻿using CinemaApi.Data;
-using CinemaApi.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Application.Features.Movies.Requests.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CinemaApi.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     [ApiController]
     public class MoviesController : ControllerBase
     {
-        private CinemaDbContext _dbContext;
-        public MoviesController(CinemaDbContext dbContext)
+        private readonly IMediator _mediator;
+        public MoviesController(IMediator mediator)
         {
-            _dbContext = dbContext;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        [Authorize]
+       // [Authorize]
         public IActionResult GetAllMovies(string sort, int pageNumber = 1, int pageSize = 10)
         {
+            var movies = _mediator.Send(new GetMoviesListRequest());
+            
+            /*
+             *  TRASLADAR ESTA LÓGICA
             var movies = _dbContext.Movies.ToList();
 
             if (sort == "desc")
@@ -34,11 +32,11 @@ namespace CinemaApi.Controllers
                 movies = movies.OrderBy(x => x.TicketPrice).ToList();
 
             movies = movies.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
-
+            */
             return Ok(movies);
         }
 
-        [HttpGet("[action]")]
+      /*  [HttpGet("[action]")]
         [Authorize]
         public IActionResult FindByName(string name)
         {
@@ -47,25 +45,25 @@ namespace CinemaApi.Controllers
                 return StatusCode(StatusCodes.Status204NoContent);
             else
                 return Ok(movies);
-        }
+        }*/
 
-        [HttpGet("{id}")]
+     /*   [HttpGet("{id}")]
         [Authorize]
         public IActionResult MovieDetail(int id)
         {
             return Ok(_dbContext.Movies.Find(id));
-        }
+        }*/
 
-        [HttpPost]
+     /*   [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult AddMovie([FromForm] Movie movie)
         {
             _dbContext.Movies.Add(movie);
             _dbContext.SaveChanges();
             return StatusCode(StatusCodes.Status201Created);
-        }
+        }*/
 
-        [HttpPut("{id}")]
+       /* [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
         public IActionResult UpdateMovie(int id, [FromForm] Movie movie)
         {
@@ -94,6 +92,6 @@ namespace CinemaApi.Controllers
             _dbContext.Movies.Remove(movie);
             _dbContext.SaveChanges();
             return Ok("Se borró la película correctamente");
-        }
+        }*/
     }
 }
