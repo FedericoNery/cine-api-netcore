@@ -1,36 +1,45 @@
-﻿using AuthenticationPlugin;
-using CinemaApi.Data;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Application.DTO_s;
+using Application.Features.Users.Requests.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
+using System.Collections.Generic;
 
 namespace CinemaApi.Controllers
 {
-    [Route("api/[controller]/[action]")] // como todos los métodos van a usar el nombre del método, es preferible pasarlo por acá y listo
+    [Route("api/[controller]")] 
+    // como todos los métodos van a usar el nombre del método, es preferible pasarlo por acá y listo
     //[Authorize]//Estamos protegiendo el controller acá
-               //Basicamente estamos controlando que nadie que no este logueado pueda pegarle a la API
+    //Basicamente estamos controlando que nadie que no este logueado pueda pegarle a la API
     [ApiController]
 
 
     public class UsersController : ControllerBase
     {
-        private CinemaDbContext _dbContext;
+       /* private CinemaDbContext _dbContext;
         private IConfiguration _configuration;
         private readonly AuthService _auth;
+*/
+        private readonly IMediator _mediator;
+        public UsersController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
 
-        public UsersController(CinemaDbContext dbContext, IConfiguration configuration)
+        [HttpGet]
+        public ActionResult<List<UserDTO>> GetAllUsers()
+        {
+            var movies = _mediator.Send(new GetUsersListRequest());
+            return Ok(movies);
+        }
+
+        /*public UsersController(CinemaDbContext dbContext, IConfiguration configuration)
         {
             _dbContext = dbContext;
             _configuration = configuration;
             _auth = new AuthService(_configuration);
-        }
+        }*/
 
-        [HttpPost]
+        //[HttpPost]
         //[Authorize]//Estamos protegiendo el método acá
         /*public IActionResult Register([FromBody] User user)
         {
@@ -54,7 +63,7 @@ namespace CinemaApi.Controllers
         }*/
 
         //Crear metodos get para authorize de users y de admin
-        [HttpGet]
+        /*[HttpGet]
         [Authorize(Roles = "Admin")]
         public string EsAdmin()
         {
@@ -66,7 +75,7 @@ namespace CinemaApi.Controllers
         public string EsUser(int id)
         {
             return "Tiene rol de users";
-        }
+        }*/
 
         /*[HttpPost]
         public IActionResult Login([FromBody] User user)

@@ -1,16 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Domain
 {
     public class Movie : BaseDomainEntity
     {
+        public Movie()
+        {
 
-        [Required(ErrorMessage ="El Nombre es requerido")]
+        }
+        /*
+        public Movie(string name, string language, string description, string duration, DateTime playingDate, DateTime playingTime,
+            double ticketPrice, double rating, string genre, string trailorUrl, string imageUrl)
+        {
+            Name = name;
+            Language = language;
+            Description = description;
+            Duration = duration;
+            PlayingDate = playingDate;
+            PlayingTime = playingTime;
+            TicketPrice = ticketPrice;
+            Rating = rating;
+            Genre = genre;
+            TrailorUrl = trailorUrl;
+            ImageUrl = imageUrl;
+        }*/
+
+        [Required(ErrorMessage = "El Nombre es requerido")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "El idioma es requerido")]
@@ -26,7 +44,7 @@ namespace Domain
         public string TrailorUrl { get; set; }
         public string ImageUrl { get; set; }
         [XmlIgnore]
-        public ICollection<Reservation> Reservations { get; set; }
+        public IList<Reservation> Reservations { get; set; }
 
     }
 }

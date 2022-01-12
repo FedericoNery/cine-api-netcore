@@ -1,17 +1,15 @@
-﻿using Application;
-using Application.Persistence;
-using CinemaApi.Data;
+﻿using Application.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Persistence.Data;
 using Persistence.Repositories;
-using System;
 
 namespace Persistence
 {
     public static class PersistenceServicesRegistration
     {
-        public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services)
         {
             /* 
              * AGREGAR CONNECTION STRING

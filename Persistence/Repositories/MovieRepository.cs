@@ -1,11 +1,6 @@
-﻿using Application;
-using CinemaApi.Data;
+﻿using Application.Persistence;
 using Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Persistence.Data;
 
 namespace Persistence.Repositories
 {

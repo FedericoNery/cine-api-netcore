@@ -1,10 +1,7 @@
 ﻿using Application.Persistence;
-using CinemaApi.Data;
 using Domain;
-using System;
+using Persistence.Data;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Persistence.Repositories
@@ -17,5 +14,9 @@ namespace Persistence.Repositories
         {
             _dbContext = dbContext;
         }
+
+        /*public async Task<List<User>> GetAll(){
+            return await base.GetAll();
+        }*/
     }
 }

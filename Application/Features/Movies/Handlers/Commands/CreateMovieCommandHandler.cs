@@ -1,6 +1,7 @@
 ﻿using Application.DTO_s.Movie.Validators;
 using Application.Exceptions;
 using Application.Features.Movies.Requests;
+using Application.Persistence;
 using AutoMapper;
 using Domain;
 using MediatR;

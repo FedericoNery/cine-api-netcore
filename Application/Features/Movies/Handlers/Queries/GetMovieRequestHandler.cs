@@ -1,11 +1,9 @@
 ﻿using Application.DTO_s.Movie;
 using Application.Features.Movies.Requests.Queries;
+using Application.Persistence;
 using AutoMapper;
 using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

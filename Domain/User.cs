@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-
+﻿using System.Collections.Generic;
+using System.Text.Json;
 namespace Domain
 {
     public class User: BaseDomainEntity
@@ -12,7 +8,7 @@ namespace Domain
         public string Email { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
-        [XmlIgnore]
-        public ICollection<Reservation> Reservations { get; set; }
+        //[XmlIgnore]
+        //public IList<Reservation> Reservations { get; set; }
     }
 }

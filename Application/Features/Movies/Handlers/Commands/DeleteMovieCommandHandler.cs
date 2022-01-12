@@ -1,12 +1,8 @@
 ﻿using Application.DTO_s.Movie.Validators;
 using Application.Exceptions;
 using Application.Features.Movies.Requests;
-using AutoMapper;
+using Application.Persistence;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

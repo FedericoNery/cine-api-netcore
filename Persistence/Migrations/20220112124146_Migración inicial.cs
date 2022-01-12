@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CinemaApi.Migrations
+namespace Persistence.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Migracióninicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

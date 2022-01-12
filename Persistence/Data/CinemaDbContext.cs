@@ -1,7 +1,7 @@
 ﻿using Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace CinemaApi.Data
+namespace Persistence.Data
 {
     public class CinemaDbContext : DbContext
     {

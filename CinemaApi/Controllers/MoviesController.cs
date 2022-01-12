@@ -1,6 +1,10 @@
-﻿using Application.Features.Movies.Requests.Queries;
+﻿using Application.DTO_s;
+using Application.DTO_s.Movie;
+using Application.Features.Movies.Requests.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CinemaApi.Controllers
 {
@@ -17,9 +21,9 @@ namespace CinemaApi.Controllers
 
         [HttpGet]
        // [Authorize]
-        public IActionResult GetAllMovies(string sort, int pageNumber = 1, int pageSize = 10)
+        public async Task<ActionResult<List<MovieDTO>>> GetAllMovies(string sort, int pageNumber = 1, int pageSize = 10)
         {
-            var movies = _mediator.Send(new GetMoviesListRequest());
+            var movies = await _mediator.Send(new GetMoviesListRequest());
             
             /*
              *  TRASLADAR ESTA LÓGICA

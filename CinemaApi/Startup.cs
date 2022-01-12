@@ -1,5 +1,4 @@
 using Application;
-using CinemaApi.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,8 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
+using Persistence.Data;
 using System;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace CinemaApi
 {
@@ -61,16 +62,20 @@ namespace CinemaApi
         {
             services.ConfigureApplicationServices();
             //services.ConfigureInfrastructureServices(Configuration); Si agregamos los mails por ahora no
-            services.ConfigurePersistenceServices(Configuration);
+            services.ConfigurePersistenceServices();
             services.AddAuthorization();
             services.AddHealthChecks();
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(x =>
+                    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             services.AddSwaggerGen();
 
             services.AddDbContext<CinemaDbContext>(option => 
             option.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDb;Integrated Security = True"));
 
-            services.AddMvc().AddXmlSerializerFormatters(); //para que nos puedan devolver el contenido en el formato que querramos
+            services.AddMvc();
+                //.AddXmlSerializerFormatters(); 
+            //para que nos puedan devolver el contenido en el formato que querramos
             //por ejemplo xml
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -88,7 +93,7 @@ namespace CinemaApi
                         ClockSkew = TimeSpan.Zero,
                     };
                 });
-
+            
         }
     }
 }
