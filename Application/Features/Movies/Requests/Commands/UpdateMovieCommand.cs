@@ -1,14 +1,10 @@
-﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.DTO_s.Movie;
+using MediatR;
 
 namespace Application.Features.Movies.Requests
 {
     public class UpdateMovieCommand : IRequest
     {
-
+        public UpdateMovieDTO UpdateMovieDTO { get; set; }
     }
 }

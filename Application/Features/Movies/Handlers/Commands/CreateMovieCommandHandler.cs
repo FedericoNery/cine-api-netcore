@@ -1,4 +1,5 @@
-﻿using Application.DTO_s.Movie.Validators;
+﻿using Application.DTO_s.Movie;
+using Application.DTO_s.Movie.Validators;
 using Application.Exceptions;
 using Application.Features.Movies.Requests;
 using Application.Persistence;
@@ -31,7 +32,7 @@ namespace Application.Features.Movies.Handlers.Commands
             if (validationResult.IsValid == false)
                 throw new ValidationException(validationResult);
 
-            var movie = _mapper.Map<Movie>(request.CreateMovieDTO);
+            var movie = _mapper.Map<CreateMovieDTO, Movie>(request.CreateMovieDTO);
 
             movie = await _movieRepository.Create(movie);
 

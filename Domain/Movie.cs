@@ -7,26 +7,6 @@ namespace Domain
 {
     public class Movie : BaseDomainEntity
     {
-        public Movie()
-        {
-
-        }
-        /*
-        public Movie(string name, string language, string description, string duration, DateTime playingDate, DateTime playingTime,
-            double ticketPrice, double rating, string genre, string trailorUrl, string imageUrl)
-        {
-            Name = name;
-            Language = language;
-            Description = description;
-            Duration = duration;
-            PlayingDate = playingDate;
-            PlayingTime = playingTime;
-            TicketPrice = ticketPrice;
-            Rating = rating;
-            Genre = genre;
-            TrailorUrl = trailorUrl;
-            ImageUrl = imageUrl;
-        }*/
 
         [Required(ErrorMessage = "El Nombre es requerido")]
         public string Name { get; set; }

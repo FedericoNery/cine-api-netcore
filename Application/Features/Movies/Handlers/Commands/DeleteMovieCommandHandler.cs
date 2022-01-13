@@ -1,4 +1,5 @@
-﻿using Application.DTO_s.Movie.Validators;
+﻿using Application.DTO_s.Movie;
+using Application.DTO_s.Movie.Validators;
 using Application.Exceptions;
 using Application.Features.Movies.Requests;
 using Application.Persistence;
@@ -20,14 +21,13 @@ namespace Application.Features.Movies.Handlers.Commands
         public async Task<Unit> Handle(DeleteMovieCommand request, CancellationToken cancellationToken)
         {
             var validator = new DeleteMovieDTOValidator();
-            var validationResult = validator.Validate(request.DeleteMovieDTO);
+            var deleteMovieDTO = new DeleteMovieDTO { Id = request.Id };
+            var validationResult = validator.Validate(deleteMovieDTO);
 
             if (validationResult.IsValid == false)
                 throw new ValidationException(validationResult);
 
-            var movie = await _movieRepository.Get(request.DeleteMovieDTO.Id);
-
-            await _movieRepository.Delete(movie);
+            await _movieRepository.DeleteById(request.Id);
 
             return Unit.Value;
         }

@@ -12,6 +12,7 @@ namespace Application.Persistence
         Task<T> Update(T entity);
         Task<Unit> Delete(T entity);
 
+        Task<Unit> DeleteById(int id);
         //Acá van las operaciones más generales CRUD básico
     }
 }

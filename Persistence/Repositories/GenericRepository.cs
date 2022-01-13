@@ -30,6 +30,13 @@ namespace Persistence.Repositories
             return Unit.Value;
         }
 
+        public async Task<Unit> DeleteById(int id)
+        {
+            var entity = await Get(id);
+            await Delete(entity);
+            return Unit.Value;
+        }
+
         public async Task<T> Get(int id)
         {
             return await _dbContext.Set<T>().FindAsync(id);

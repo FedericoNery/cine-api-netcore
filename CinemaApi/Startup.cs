@@ -73,10 +73,10 @@ namespace CinemaApi
             services.AddDbContext<CinemaDbContext>(option => 
             option.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDb;Integrated Security = True"));
 
-            services.AddMvc();
-                //.AddXmlSerializerFormatters(); 
+            services.AddMvc().AddXmlSerializerFormatters(); 
             //para que nos puedan devolver el contenido en el formato que querramos
             //por ejemplo xml
+            
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using AutoMapper.Configuration.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Application.DTO_s
 {
@@ -20,6 +22,8 @@ namespace Application.DTO_s
         public string Genre { get; set; }
         public string TrailorUrl { get; set; }
         public string ImageUrl { get; set; }
-        public ICollection<ReservationDTO> Reservations { get; set; }
+        [XmlIgnore]
+        [Ignore]
+        public IList<ReservationDTO> Reservations { get; set; }
     }
 }
