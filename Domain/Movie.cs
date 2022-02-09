@@ -23,8 +23,8 @@ namespace Domain
         public string Genre { get; set; }
         public string TrailorUrl { get; set; }
         public string ImageUrl { get; set; }
-        [XmlIgnore]
-        public IList<Reservation> Reservations { get; set; }
+        /*[XmlIgnore]
+        public IList<Reservation> Reservations { get; set; }*/
 
     }
 }

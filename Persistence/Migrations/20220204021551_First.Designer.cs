@@ -10,8 +10,8 @@ using Persistence.Data;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(CinemaDbContext))]
-    [Migration("20220112124146_Migración inicial")]
-    partial class Migracióninicial
+    [Migration("20220204021551_First")]
+    partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,27 @@ namespace Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Domain.Entrevista", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Entrevistado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Entrevistador")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UriArchivo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Entrevistas");
+                });
 
             modelBuilder.Entity("Domain.Movie", b =>
                 {
@@ -68,6 +89,45 @@ namespace Persistence.Migrations
                     b.ToTable("Movies");
                 });
 
+            modelBuilder.Entity("Domain.Plantilla", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UriArchivo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Plantillas");
+                });
+
+            modelBuilder.Entity("Domain.PreguntaRespuesta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Pregunta")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Respuesta")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RespuestaCorrecta")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PreguntasRespuestas");
+                });
+
             modelBuilder.Entity("Domain.Reservation", b =>
                 {
                     b.Property<int>("Id")
@@ -95,10 +155,6 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MovieId");
-
-                    b.HasIndex("UserId");
-
                     b.ToTable("Reservations");
                 });
 
@@ -124,31 +180,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Domain.Reservation", b =>
-                {
-                    b.HasOne("Domain.Movie", null)
-                        .WithMany("Reservations")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.User", null)
-                        .WithMany("Reservations")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Movie", b =>
-                {
-                    b.Navigation("Reservations");
-                });
-
-            modelBuilder.Entity("Domain.User", b =>
-                {
-                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }

@@ -18,13 +18,16 @@ namespace Persistence
                     configuration.GetConnectionString(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDb;Integrated Security = True")));*/
 
             services.AddDbContext<CinemaDbContext>(option =>
-            option.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDb;Integrated Security = True"));
+            option.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDB;Integrated Security = True"));
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IEntrevistaRepository, EntrevistaRepository>();
+            services.AddScoped<IPlantillaRepository, PlantillaRepository>();
+            services.AddScoped<IPreguntasRepository, PreguntaRepository>();
 
             return services;
         }

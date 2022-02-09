@@ -65,13 +65,18 @@ namespace CinemaApi
             services.ConfigurePersistenceServices();
             services.AddAuthorization();
             services.AddHealthChecks();
-            services.AddControllers()
-                .AddJsonOptions(x =>
-                    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+            services.AddControllers();
+               /* .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler =
+                    ReferenceHandler.IgnoreCycles;
+                }); */
+               /* .AddJsonOptions(x =>
+                    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);*/
             services.AddSwaggerGen();
 
-            services.AddDbContext<CinemaDbContext>(option => 
-            option.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDb;Integrated Security = True"));
+           /* services.AddDbContext<CinemaDbContext>(option => 
+            option.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDB;Integrated Security = True"));*/
 
             services.AddMvc().AddXmlSerializerFormatters(); 
             //para que nos puedan devolver el contenido en el formato que querramos
